@@ -1,6 +1,8 @@
 package com.trybe.acc.java.caixaeletronico;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +12,10 @@ class PessoaClienteTest {
   @Test
   @DisplayName("12 - Testa o construtor da classe Pessoa Cliente.")
   void construtorTest() {
-    fail("Não implementado");
-
+    Transacao transacao = new Transacao(500, "deposito");
+    assertEquals("deposito", transacao.getDescricao());
+    String quantia = String.valueOf(transacao.getQuantia());
+    assertEquals(quantia, transacao.getQuantia());
   }
 
   @Test
