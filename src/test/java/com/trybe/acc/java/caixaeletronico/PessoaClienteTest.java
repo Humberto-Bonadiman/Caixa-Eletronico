@@ -4,7 +4,7 @@ package com.trybe.acc.java.caixaeletronico;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -59,29 +59,34 @@ class PessoaClienteTest {
   @Test
   @DisplayName("15 - Testa o método retornar id de uma conta específica da pessoa cliente.")
   void retornarIdContaEspecificaTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = new Conta("Poupança", cliente, banco);
+    cliente.adicionarConta(conta);
+    assertEquals(conta.getIdConta(), cliente.retornarIdContaEspecifica(1));
   }
 
   @Test
   @DisplayName("16 - Testa o método retornar o extrato de uma conta específica da pessoa cliente.")
   void retornarExtratoContaEspecificaTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    banco.depositar(cliente, 0, 200.00);
+    cliente.retornarExtratoContaEspecifica(0);
+    assertTrue(outContent.toString().contains("Depósito recebido: R$ 200.00 +\n"));
   }
 
   @Test
   @DisplayName("17 - Testa o método adiciona transacao de uma conta específica da pessoa cliente.")
   void adicionarTransacaoContaEspecificaTest() {
     fail("Não implementado");
-
   }
 
   @Test
   @DisplayName("18 - Testa o método validar senha.")
   void validarSenhaTest() {
-    fail("Não implementado");
-
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    assertTrue(cliente.validarSenha("1234"));
   }
 
   @Test
@@ -95,8 +100,8 @@ class PessoaClienteTest {
   @Test
   @DisplayName("20 - Testa o método Getter do atributo cpf está retornando.")
   void getCpfTest() {
-    fail("Não implementado");
-
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    assertEquals("842.074.410-77", cliente.getCpf());
   }
 
 }
