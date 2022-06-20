@@ -8,17 +8,29 @@ public class Transacao {
   private String instante;
   private String descricao;
   
+  /**
+   * 
+   * Transacao.
+   */
   public Transacao(double quantia, String descricao) {
     this.quantia = quantia;
     this.descricao = descricao;
     this.instante = retornarInstante();
   }
   
+  /**
+   * 
+   * retornar resumo transacao.
+   */
   public String retornarResumoTransacao() {
     return "Resumo da transação:" + "\nInstante: " + this.instante + "\nQuantia: " + this.quantia
       + "\nDescrição: " + this.descricao;
   }
   
+  /**
+   * 
+   * retornar instante.
+   */
   public String retornarInstante() {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     LocalDateTime date = LocalDateTime.now();

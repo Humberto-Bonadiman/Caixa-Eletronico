@@ -10,6 +10,10 @@ public class Conta {
   private ArrayList<Transacao> transacoes;
   private double saldo = 0.00;
   
+  /**
+   * 
+   * Conta.
+   */
   public Conta(String tipoConta, PessoaCliente pessoaCliente, Banco banco) {
     this.tipoConta = tipoConta;
     this.idConta = banco.gerarNumeroNovaConta();

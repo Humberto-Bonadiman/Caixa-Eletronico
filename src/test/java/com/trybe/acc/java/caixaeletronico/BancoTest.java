@@ -20,14 +20,15 @@ class BancoTest {
   @DisplayName("2 - Testa o método adicionar pessoa cliente retorna o objeto pessoa cliente.")
   void adicionarPessoaClienteTest() {
 	Banco banco = new Banco();
-    
+    PessoaCliente cliente = banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    assertEquals(cliente, banco.getPessoasClientes().get(0));
   }
 
   @Test
   @DisplayName("3 - Testa o método login da pessoa cliente retorna o objeto pessoa cliente corretamente.")
   void pessoaClienteLoginTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
   }
 
   @Test

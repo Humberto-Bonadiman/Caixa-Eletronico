@@ -8,12 +8,17 @@ import java.util.Random;
  *
  */
 public class Banco {
-	
+
   private ArrayList<PessoaCliente> pessoasClientes = new ArrayList<PessoaCliente>();
   private ArrayList<Conta> contas = new ArrayList<Conta>();
   /**
    * gerar numero nova conta.
    * 
+   */
+
+  /**
+   * gerar numero nova conta.
+   *
    */
   public String gerarNumeroNovaConta() {
     Random gerador = new Random();
@@ -27,8 +32,25 @@ public class Banco {
     return result;
   }
   
-  /**public PessoaCliente adicionarPessoaCliente (String nome, String cpf, String senha) {
-   *  
-   *}
+  public PessoaCliente adicionarPessoaCliente(String nome, String cpf, String senha) {
+    PessoaCliente cliente = new PessoaCliente(nome, cpf, senha);
+    this.pessoasClientes.add(cliente);
+    return cliente;
+  }
+  
+  public PessoaCliente pessoaClienteLogin(String cpf, String senha) {
+    PessoaCliente contains = this.pessoasClientes.stream()
+      .filter(e -> e.getCpf() == cpf && e.getSenha() == senha)
+      .findFirst().orElse(null);
+    return contains;
+  }
+  
+  /**
+   * get Pessoas Clientes.
+   *
    */
+  public ArrayList<PessoaCliente> getPessoasClientes() {
+    return pessoasClientes;
+  }
+  
 }
