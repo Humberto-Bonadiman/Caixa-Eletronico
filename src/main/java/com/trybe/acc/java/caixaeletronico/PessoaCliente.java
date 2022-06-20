@@ -58,10 +58,6 @@ public class PessoaCliente {
     return false;
   }
 
-  public void retornarResumoContas() {
-    getContas();
-  }
-
   public ArrayList<Conta> getContas() {
     return contas;
   }
