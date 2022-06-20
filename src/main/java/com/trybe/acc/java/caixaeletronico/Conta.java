@@ -11,7 +11,6 @@ public class Conta {
   private double saldo = 0.00;
   
   /**
-   * 
    * Conta.
    */
   public Conta(String tipoConta, PessoaCliente pessoaCliente, Banco banco) {
@@ -46,6 +45,9 @@ public class Conta {
     return this.saldo;
   }
   
+  /**
+   * retornar Extrato.
+   */
   public void retornarExtrato() {
     int totalTransacoes = transacoes.size();
     for (int indice = 0; indice < totalTransacoes; indice += 1) {

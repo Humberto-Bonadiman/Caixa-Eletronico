@@ -9,7 +9,6 @@ public class Transacao {
   private String descricao;
   
   /**
-   * 
    * Transacao.
    */
   public Transacao(double quantia, String descricao) {
@@ -19,7 +18,6 @@ public class Transacao {
   }
   
   /**
-   * 
    * retornar resumo transacao.
    */
   public String retornarResumoTransacao() {
@@ -28,7 +26,6 @@ public class Transacao {
   }
   
   /**
-   * 
    * retornar instante.
    */
   public String retornarInstante() {
