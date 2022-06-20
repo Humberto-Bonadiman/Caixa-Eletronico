@@ -45,6 +45,15 @@ public class Banco {
     return contains;
   }
   
+  public void transferirFundos(
+		  PessoaCliente pessoaCliente,
+		  int daConta,
+		  int paraConta,
+		  double quantia
+  ) {
+    
+  }
+  
   /**
    * get Pessoas Clientes.
    *

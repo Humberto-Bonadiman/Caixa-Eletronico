@@ -28,7 +28,11 @@ class BancoTest {
   @DisplayName("3 - Testa o método login da pessoa cliente retorna o objeto pessoa cliente corretamente.")
   void pessoaClienteLoginTest() {
     Banco banco = new Banco();
-    banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    PessoaCliente cliente = banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    PessoaCliente retornaCliente = banco.pessoaClienteLogin("842.074.410-77", "1234");
+    PessoaCliente naoRetornaCliente = banco.pessoaClienteLogin("842.074.410-79", "123456");
+    assertEquals(retornaCliente, cliente);
+    assertEquals(naoRetornaCliente, null);
   }
 
   @Test

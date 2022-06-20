@@ -1,21 +1,40 @@
 package com.trybe.acc.java.caixaeletronico;
 
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import java.time.LocalDateTime;
+//import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Teste dos métodos da classe PessoaCliente")
 class PessoaClienteTest {
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private final PrintStream originalOut = System.out;
+  
+  @BeforeEach
+  public void setUpStreams() {
+      System.setOut(new PrintStream(outContent));
+  }
+
+  @AfterEach
+  public void restoreStreams() {
+      System.setOut(originalOut);
+  }
 
   @Test
   @DisplayName("12 - Testa o construtor da classe Pessoa Cliente.")
   void construtorTest() {
-    Transacao transacao = new Transacao(500, "deposito");
-    assertEquals("deposito", transacao.getDescricao());
-    String quantia = String.valueOf(transacao.getQuantia());
-    assertEquals(quantia, transacao.getQuantia());
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    assertEquals("Alexiania Pereira", cliente.getNomeCompleto());
+    assertEquals("842.074.410-77", cliente.getCpf());
+    assertEquals("1234", cliente.getSenha());
+    String mensagem = "Nova pessoa cliente Alexiania Pereira com 842.074.410-77 foi criada!";
+    assertEquals(mensagem, outContent.toString());
   }
 
   @Test
