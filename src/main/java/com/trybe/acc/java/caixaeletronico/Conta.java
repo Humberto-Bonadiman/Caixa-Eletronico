@@ -37,8 +37,20 @@ public class Conta {
     this.transacoes.add(novaTransacao);
   }
   
+  public String retornarResumoConta() {
+    String saldoConta = String.format("%.2f", this.saldo).replace(",", ".");
+    return this.idConta + " : " + saldoConta + " : " + this.tipoConta;
+  }
+  
   public double retornarSaldo() {
     return this.saldo;
+  }
+  
+  public void retornarExtrato() {
+    int totalTransacoes = transacoes.size();
+    for (int indice = 0; indice < totalTransacoes; indice += 1) {
+      System.out.println(transacoes.get(indice));
+    }
   }
 
 }

@@ -35,9 +35,26 @@ public class PessoaCliente {
     return idConta;
   }
   
-  // faltam 4 métodos
+  public void retornarExtratoContaEspecifica(int indice) {
+    this.contas.get(indice).retornarExtrato();
+  }
+  
+  public boolean validarSenha(String senha) {
+    if (senha == this.senha) {
+    	return true;
+    }
+    return false;
+  }
+  
+  public void retornarResumoContas() {
+    getContas();
+  }
 
-  public String getNomeCompleto() {
+  public ArrayList<Conta> getContas() {
+    return contas;
+  }
+
+public String getNomeCompleto() {
     return nomeCompleto;
   }
 
