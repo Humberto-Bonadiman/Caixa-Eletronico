@@ -60,6 +60,10 @@ public class Banco {
     
   }
   
+  public void depositar(PessoaCliente pessoaCliente, int paraConta, double quantia) {
+    contas.get(paraConta).adicionarTransacao(quantia, "Depósito");
+  }
+  
   /**
    * get Pessoas Clientes.
    *

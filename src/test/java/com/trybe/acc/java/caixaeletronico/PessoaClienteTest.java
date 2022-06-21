@@ -3,9 +3,9 @@ package com.trybe.acc.java.caixaeletronico;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -50,9 +50,10 @@ class PessoaClienteTest {
 @Test
   @DisplayName("14 - Testa o método retornar saldo de uma conta específica da pessoa cliente.")
   void retornarSaldoContaEspecificaTest() {
-    Banco banco = new Banco();
-    PessoaCliente cliente = banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
-    assertEquals(0.00, cliente.retornarSaldoContaEspecifica(0));
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = new Conta("Conta Corrente", cliente, new Banco());
+    cliente.adicionarConta(conta);
+    assert (cliente.retornarSaldoContaEspecifica(0) == 0.0);
   }
 
 
@@ -79,7 +80,13 @@ class PessoaClienteTest {
   @Test
   @DisplayName("17 - Testa o método adiciona transacao de uma conta específica da pessoa cliente.")
   void adicionarTransacaoContaEspecificaTest() {
-    fail("Não implementado");
+	Banco banco = new Banco();
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = new Conta("Poupança", cliente, banco);
+    cliente.adicionarConta(conta);
+    assertThrows(IndexOutOfBoundsException.class, () -> {
+	    cliente.adicionarTransacaoContaEspecifica(2, 500.0, "descricao");
+	});
   }
 
   @Test
@@ -92,9 +99,11 @@ class PessoaClienteTest {
   @Test
   @DisplayName("19 - Testa o método retornar resumo contas.")
   void retornarResumoContasTest() {
-    fail("Não implementado");
-
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = cliente.getContas().get(0);
+    cliente.retornarResumoContas();
+    assertTrue(outContent.toString().contains(conta.retornarResumoConta()));
   }
 
   @Test

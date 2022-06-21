@@ -44,8 +44,23 @@ public class PessoaCliente {
     return idConta;
   }
 
+  /**
+   * retornar extrato contato especifica.
+   */
   public void retornarExtratoContaEspecifica(int indice) {
     this.contas.get(indice).retornarExtrato();
+  }
+  
+  /**
+   * adicionar transacao conta especifica.
+   */
+  public void adicionarTransacaoContaEspecifica(
+      int indice,
+      double quantia,
+      String descricao
+  ) {
+    Conta conta = this.contas.get(indice);
+    conta.adicionarTransacao(quantia, descricao);
   }
 
   /**
@@ -56,6 +71,15 @@ public class PessoaCliente {
       return true;
     }
     return false;
+  }
+  
+  /**
+   * retornar resumo contas.
+   */
+  public void retornarResumoContas() {
+    for (int indice = 0; indice < contas.size(); indice += 1) {
+      System.out.println(contas.get(indice).retornarResumoConta());
+    }
   }
 
   public ArrayList<Conta> getContas() {
