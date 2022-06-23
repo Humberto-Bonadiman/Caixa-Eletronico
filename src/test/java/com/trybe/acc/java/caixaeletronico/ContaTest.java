@@ -1,6 +1,8 @@
 package com.trybe.acc.java.caixaeletronico;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,15 +33,22 @@ class ContaTest {
   @Test
   @DisplayName("8 - Testa o método retornar resumo está retornando uma string com os valores corretamente.")
   void retornarResumoContaTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = new Conta("Poupança", cliente, banco);
+    System.out.println(conta.retornarResumoConta());
+    assertTrue(conta.retornarResumoConta().contains("Poupança"));
   }
 
   @Test
   @DisplayName("9 - Testa o método retornar extrato está imprimindo os valores corretamente.")
   void retornarExtratoTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = new Conta("Popança", cliente, banco);
+    assertThrows(NullPointerException.class, () -> {
+      conta.retornarExtrato();
+    });
   }
 
   @Test
