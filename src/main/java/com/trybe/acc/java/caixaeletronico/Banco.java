@@ -31,7 +31,7 @@ public class Banco {
     }
     return result;
   }
-  
+
   /**
    * adicionar pessoa cliente.
    */
@@ -97,6 +97,13 @@ public class Banco {
    */
   public ArrayList<PessoaCliente> getPessoasClientes() {
     return pessoasClientes;
+  }
+
+  /**
+   * get contas.
+   */
+  public ArrayList<Conta> getContas() {
+    return contas;
   }
   
 }

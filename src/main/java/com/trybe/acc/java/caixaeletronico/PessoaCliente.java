@@ -6,7 +6,7 @@ public class PessoaCliente {
   private String nomeCompleto;
   private String cpf;
   private String senha;
-  private ArrayList<Conta> contas;
+  private ArrayList<Conta> contas = new ArrayList<Conta>();
 
   /**
    * pessoa cliente.
@@ -31,18 +31,14 @@ public class PessoaCliente {
    * retornar saldo conta especifica.
    */
   public double retornarSaldoContaEspecifica(int indice) {
-    Conta conta = this.contas.get(indice);
-    double saldo = conta.retornarSaldo();
-    return saldo;
+    return this.contas.get(indice).retornarSaldo();
   }
 
   /**
    * retornar id conta especifica.
    */
   public String retornarIdContaEspecifica(int indice) {
-    Conta conta = this.contas.get(indice);
-    String idConta = conta.getIdConta();
-    return idConta;
+    return this.contas.get(indice).getIdConta();
   }
 
   /**
@@ -60,26 +56,22 @@ public class PessoaCliente {
       double quantia,
       String descricao
   ) {
-    Conta conta = this.contas.get(indice);
-    conta.adicionarTransacao(quantia, descricao);
+    this.contas.get(indice).adicionarTransacao(quantia, descricao);
   }
 
   /**
    * validar senha.
    */
   public boolean validarSenha(String senha) {
-    if (senha == this.senha) {
-      return true;
-    }
-    return false;
+    return this.senha.equals(senha);
   }
   
   /**
    * retornar resumo contas.
    */
   public void retornarResumoContas() {
-    for (int indice = 0; indice < contas.size(); indice += 1) {
-      System.out.println(contas.get(indice).retornarResumoConta());
+    for (int indice = 1; indice <= contas.size(); indice += 1) {
+      System.out.println(this.contas.get(indice - 1).retornarResumoConta());
     }
   }
 

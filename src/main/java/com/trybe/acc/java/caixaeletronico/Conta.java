@@ -65,9 +65,8 @@ public class Conta {
    * retornar Extrato.
    */
   public void retornarExtrato() {
-    int totalTransacoes = transacoes.size();
-    for (int indice = 0; indice < totalTransacoes; indice += 1) {
-      System.out.println(transacoes.get(indice));
+    for (Transacao transacao : transacoes) {
+      System.out.println(transacao.retornarResumoTransacao());
     }
   }
 

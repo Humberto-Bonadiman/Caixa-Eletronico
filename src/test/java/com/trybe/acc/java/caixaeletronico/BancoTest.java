@@ -38,15 +38,25 @@ class BancoTest {
   @Test
   @DisplayName("4 - Testa se o método transferir fundos está transferindo corretamente.")
   void depositarTestTransferirFundosTestmostrarExtratoTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    banco.adicionarConta("Corrente", cliente);
+    banco.adicionarConta("Poupança", cliente);
+    cliente.adicionarTransacaoContaEspecifica(0, 500.0, "depósito");
+    banco.transferirFundos(cliente, 0, 1, 100.0);
+    assertEquals(400, cliente.retornarSaldoContaEspecifica(0));
+    assertEquals(100, cliente.retornarSaldoContaEspecifica(1));
   }
 
   @Test
   @DisplayName("5 - Testa se o método sacar está funcionando corretamente.")
   void depositarTestSacarTestMostrarExtratoTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = banco.adicionarPessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    banco.adicionarConta("Poupança", cliente);
+    cliente.adicionarTransacaoContaEspecifica(0, 500.0, "depósito");
+    banco.sacar(cliente, 0, 200.0);
+    assertEquals(300, cliente.retornarSaldoContaEspecifica(0));
   }
 
 }
