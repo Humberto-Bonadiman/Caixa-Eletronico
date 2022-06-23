@@ -232,6 +232,7 @@ public class CaixaEletronico {
         } while (true);
 
       }
+      sc.close();
     }
   } 
 }

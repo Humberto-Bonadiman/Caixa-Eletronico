@@ -8,7 +8,6 @@ public class Conta {
   private String idConta;
   private PessoaCliente pessoaCliente;
   private ArrayList<Transacao> transacoes;
-  private double saldo = 0.00;
   
   /**
    * Conta.
@@ -27,22 +26,39 @@ public class Conta {
     return transacoes;
   }
 
+  public String getTipoConta() {
+    return tipoConta;
+  }
+
   public PessoaCliente getPessoaCliente() {
     return pessoaCliente;
   }
   
+  /**
+   * adicionar transacao.
+   */
   public void adicionarTransacao(double quantia, String descricao) {
     Transacao novaTransacao = new Transacao(quantia, descricao);
-    this.transacoes.add(novaTransacao);
+    this.transacoes = new ArrayList<Transacao>();
+    transacoes.add(novaTransacao);
   }
-  
+
   public String retornarResumoConta() {
-    String saldoConta = String.format("%.2f", this.saldo).replace(",", ".");
+    String saldoConta = String.format("%.2f", retornarSaldo()).replace(",", ".");
     return this.idConta + " : " + saldoConta + " : " + this.tipoConta;
   }
   
+  /**
+   * retornar saldo.
+   */
   public double retornarSaldo() {
-    return this.saldo;
+    double saldo = 0.0;
+    if (this.transacoes != null) {
+      for (Transacao transacao : this.transacoes) {
+        saldo += transacao.getQuantia();
+      }
+    }
+    return saldo;
   }
   
   /**

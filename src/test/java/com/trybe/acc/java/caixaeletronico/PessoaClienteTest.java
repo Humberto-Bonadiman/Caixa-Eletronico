@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Teste dos métodos da classe PessoaCliente")
 class PessoaClienteTest {
-  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private final PrintStream originalOut = System.out;
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   
   @BeforeEach
-  public void setUpStreams() {
+  public void setUp() {
       System.setOut(new PrintStream(outContent));
   }
 
@@ -34,7 +34,8 @@ class PessoaClienteTest {
     assertEquals("842.074.410-77", cliente.getCpf());
     assertEquals("1234", cliente.getSenha());
     String mensagem = "Nova pessoa cliente Alexiania Pereira com 842.074.410-77 foi criada!";
-    assertEquals(mensagem, outContent.toString());
+    String resposta = outContent.toString();
+    assertEquals(mensagem, resposta);
   }
 
   @Test

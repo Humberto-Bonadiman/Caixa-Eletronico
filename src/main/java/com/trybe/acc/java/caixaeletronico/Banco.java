@@ -51,17 +51,44 @@ public class Banco {
     return contains;
   }
   
+  /**
+   * transferir fundos.
+   */
   public void transferirFundos(
       PessoaCliente pessoaCliente,
       int daConta,
       int paraConta,
       double quantia
   ) {
-    
+    Conta contaDe = pessoaCliente.getContas().get(daConta);
+    Conta contaPara = pessoaCliente.getContas().get(paraConta);
+    contaDe.adicionarTransacao(quantia, "Transferência realizada");
+    contaPara.adicionarTransacao(quantia, "Transferência recebida");
+  }
+  
+  public void sacar(PessoaCliente pessoaCliente, int daConta, double quantia) {
+    Conta conta = pessoaCliente.getContas().get(daConta);
+    conta.adicionarTransacao(quantia, "Saque");
   }
   
   public void depositar(PessoaCliente pessoaCliente, int paraConta, double quantia) {
-    contas.get(paraConta).adicionarTransacao(quantia, "Depósito");
+    Conta conta = pessoaCliente.getContas().get(paraConta);
+    conta.adicionarTransacao(quantia, "Depósito");
+  }
+  
+  /**
+   * adicionar conta.
+   */
+  public void adicionarConta(String tipoConta, PessoaCliente cliente) {
+    Banco banco = new Banco();
+    Conta conta = new Conta(tipoConta, cliente, banco);
+    cliente.adicionarConta(conta);
+    this.contas.add(conta);
+  }
+  
+  public void mostrarExtrato(PessoaCliente pessoaCliente, int conta) {
+    Conta pessoa = pessoaCliente.getContas().get(conta);
+    pessoa.retornarExtrato();
   }
   
   /**

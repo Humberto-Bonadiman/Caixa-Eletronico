@@ -15,7 +15,8 @@ public class PessoaCliente {
     this.nomeCompleto = nome;
     this.cpf = cpf;
     this.senha = senha;
-    System.out.println("Nova pessoa cliente " + nome + " com " + cpf + " foi criada!");
+    String mensagem = "Nova pessoa cliente " + nome + " com " + cpf + " foi criada!";
+    System.out.print(mensagem);
   }
 
   public void adicionarConta(Conta conta) {

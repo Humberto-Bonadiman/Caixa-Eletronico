@@ -1,5 +1,6 @@
 package com.trybe.acc.java.caixaeletronico;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,14 +11,21 @@ class ContaTest {
   @Test
   @DisplayName("6 - Testa o construtor da classe conta.")
   void construtorTest() {
-    fail("Não implementado");
+    Banco banco = new Banco();
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = new Conta("poupança", cliente, banco);
+    assertEquals("poupança", conta.getTipoConta());
+    assertEquals(cliente, conta.getPessoaCliente());
   }
 
   @Test
   @DisplayName("7 - Testa o método adicionar transação e retornar saldo da conta.")
   void adicionarTransacaoTestRetornarSaldoTest() {
-    fail("Não implementado");
-
+    Banco banco = new Banco();
+    PessoaCliente cliente = new PessoaCliente("Alexiania Pereira", "842.074.410-77", "1234");
+    Conta conta = new Conta("Poupança", cliente, banco);
+    conta.adicionarTransacao(500.0, "depósito");
+    assertEquals(500.0, conta.retornarSaldo());
   }
 
   @Test
